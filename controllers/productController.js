@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Product = require("../models/productModel");
-const { fileSizeFormatter } = require("../utils/fileUpload");
-const cloudinary = require("cloudinary").v2;
+// const { fileSizeFormatter } = require("../utils/fileUpload");
+// const cloudinary = require("cloudinary").v2;
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema;
 
@@ -45,7 +45,7 @@ const createProduct = asyncHandler(async (req, res) => {
 });
 
 // Get all Products
-const getProducts = asyncHandler(async (req, res) => {
+const getAllProducts = asyncHandler(async (req, res) => {
   const products = await Product.find().sort("-createdAt");
   res.status(200).json(products);
 });
@@ -223,7 +223,7 @@ const updateReview = asyncHandler(async (req, res) => {
 
 module.exports = {
   createProduct,
-  getProducts,
+  getAllProducts,
   getProduct,
   deleteProduct,
   updateProduct,

@@ -1,12 +1,7 @@
 const mongoose = require("mongoose");
 
-const productSchema = mongoose.Schema(
+const productSchema = new mongoose.Schema(
   {
-    // user: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   required: true,
-    //   ref: "User",
-    // },
     name: {
       type: String,
       required: [true, "Please add a name"],
@@ -15,7 +10,7 @@ const productSchema = mongoose.Schema(
     sku: {
       type: String,
       required: true,
-      default: "SKU",
+      default: "Sku",
       trim: true,
     },
     category: {
@@ -23,15 +18,15 @@ const productSchema = mongoose.Schema(
       required: [true, "Please add a category"],
       trim: true,
     },
-    brand: {
-      type: String,
-      required: [true, "Please add a brand"],
-      trim: true,
-    },
     color: {
       type: String,
       required: [true, "Please add a color"],
       default: "As seen",
+      trim: true,
+    },
+    brand: {
+      type: String,
+      required: [true, "Please add a brand"],
       trim: true,
     },
     quantity: {
@@ -44,14 +39,14 @@ const productSchema = mongoose.Schema(
       default: 0,
       trim: true,
     },
-    price: {
-      type: String,
-      required: [true, "Please add a price"],
+    regularPrice: {
+      type: Number,
+      //required: [true, "Please add a price"],
       trim: true,
     },
-    regularPrice: {
-      type: String,
-      // required: [true, "Please add a price"],
+    price: {
+      type: Number,
+      required: [true, "Please add a price"],
       trim: true,
     },
     description: {
@@ -60,7 +55,7 @@ const productSchema = mongoose.Schema(
       trim: true,
     },
     image: {
-      type: [String],
+      type: [Object],
     },
     ratings: {
       type: [Object],

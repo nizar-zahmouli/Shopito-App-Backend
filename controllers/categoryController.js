@@ -1,45 +1,49 @@
-const asyncHandler = require("express-async-handler");
-const slugify = require("slugify");
+const asyncHandler = require("express-async-Handler");
 const Category = require("../models/categoryModel");
+const {default:mongoose} = require("mongoose");
+const slugify = require("slugify");
 
-// Create Category
+// Create new category
 const createCategory = asyncHandler(async (req, res) => {
   const { name } = req.body;
+
   if (!name) {
     res.status(400);
     throw new Error("Please fill in category name");
   }
-  const categoryExists = await Category.findOne({ name: name });
+  const categoryExists = await Category.findOne({ name });
   if (categoryExists) {
     res.status(400);
-    throw new Error("Category name already exists.");
+    throw new Error("Category name already exists");
   }
+
   const category = await Category.create({
     name,
     slug: slugify(name),
   });
-  if (category) {
-    res.status(201).json(category);
-  }
+  res.status(201).json(category);
 });
 
-const getCategories = asyncHandler(async (req, res) => {
+//  Get Category
+const getCategory = asyncHandler(async (req, res) => {
   const categories = await Category.find().sort("-createdAt");
   res.status(200).json(categories);
 });
 
+// Delete Category
+
 const deleteCategory = asyncHandler(async (req, res) => {
-  const slug = req.params.slug.toLowerCase();
-  const category = await Category.findOneAndDelete({ slug: slug });
-  if (!category) {
-    res.status(404);
-    throw new Error("Category not found");
-  }
-  res.status(200).json({ message: "Category deleted." });
+    const slug = req.params.slug.toLocaleLowerCase();
+  const categories = await Category.findOneAndDelete({slug});
+    if (!categories) {
+        res.status(404);
+        throw new Error("category not found");
+    }
+  res.status(200).json({ message: "Category deleted successfully" });
 });
 
 module.exports = {
-  createCategory,
-  getCategories,
-  deleteCategory,
+    createCategory,
+    getCategory,
+    deleteCategory,
 };

@@ -23,7 +23,7 @@ const createCoupon = asyncHandler(async (req, res) => {
 });
 
 // Get Coupons
-const getCoupons = asyncHandler(async (req, res) => {
+const getAllCoupons = asyncHandler(async (req, res) => {
   const coupons = await Coupon.find().sort("-createdAt");
   res.status(200).json(coupons);
 });
@@ -55,7 +55,7 @@ const deleteCoupon = asyncHandler(async (req, res) => {
 
 module.exports = {
   createCoupon,
+  getAllCoupons,
   getCoupon,
-  getCoupons,
   deleteCoupon,
 };

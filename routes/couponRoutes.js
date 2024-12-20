@@ -1,16 +1,16 @@
 const express = require("express");
+const router = express.Router();
 const { protect, adminOnly } = require("../middleware/authMiddleware");
 const {
   createCoupon,
-  getCoupons,
+  getAllCoupons,
   getCoupon,
   deleteCoupon,
 } = require("../controllers/couponController");
-const router = express.Router();
 
 // routes
-router.post("/createCoupon", protect, adminOnly, createCoupon);
-router.get("/getCoupons", protect, adminOnly, getCoupons);
+router.post("/new", protect, adminOnly, createCoupon);
+router.get("/", protect, adminOnly, getAllCoupons);
 router.get("/:couponName", protect, getCoupon);
 router.delete("/:id", protect, adminOnly, deleteCoupon);
 

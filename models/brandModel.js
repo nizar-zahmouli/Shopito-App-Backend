@@ -5,8 +5,9 @@ const brandSchema = new mongoose.Schema(
   {
     name: {
       type: String,
+      unique: true,
       trim: true,
-      required: "Name is required",
+      required: "name is required",
       minlength: [2, "Too short"],
       maxlength: [32, "Too long"],
     },
@@ -21,7 +22,9 @@ const brandSchema = new mongoose.Schema(
       required: true,
     },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 );
 
 const Brand = mongoose.model("Brand", brandSchema);
