@@ -1,6 +1,4 @@
-const mongoose = require("mongoose");
-const { ObjectId } = mongoose.Schema;
-
+const mongoose = require('mongoose');
 const brandSchema = new mongoose.Schema(
   {
     name: {
