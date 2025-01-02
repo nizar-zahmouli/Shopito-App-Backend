@@ -22,7 +22,7 @@
     "livereload-js": "^4.0.2",
     "mailgen": "^2.0.27",
     "mongodb": "^6.8.0",
-    "mongoose": "^6.13.0",
+    "mongoose": "^8.9.3",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.0",
     "nodemon": "^3.1.4",
