@@ -45,8 +45,8 @@ const registerUser = asyncHandler(async (req, res) => {
       path: "/",
       httpOnly: true,
       expires: new Date(Date.now() + 1000 * 86400),
-      // secure: true,
-      // sameSite : none ,
+      secure: true,
+      sameSite : none ,
     });
 
     // Send user data
@@ -96,8 +96,8 @@ const loginUser = asyncHandler(async (req, res) => {
       path: "/",
       httpOnly: true,
       expires: new Date(Date.now() + 1000 * 86400),
-      // secure: true,
-      // sameSite : none ,
+      secure: true,
+      sameSite : none ,
     });
     // Send user data
     res.status(201).json(newUser);
@@ -113,8 +113,8 @@ const logoutUser = asyncHandler(async (req, res) => {
     path: "/",
     httpOnly: true,
     expires: new Date(Date.now() + 1000 * 86400),
-    // secure: true,
-    // sameSite : none ,
+    secure: true,
+    sameSite : none ,
   });
   res.status(200).json({ message: "successfully logged out" });
 });
