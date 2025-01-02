@@ -1,7 +1,7 @@
-const asyncHandler = require("express-async-Handler");
+const asyncHandler = require('express-async-handler')
+
 const Brand = require("../models/BrandModel");
 const Category = require("../models/categoryModel");
-const { default: mongoose } = require("mongoose");
 const slugify = require("slugify");
 
 // Create new Brand

@@ -8,7 +8,6 @@ const productRoutes = require('./routes/productRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
 const brandRoutes = require('./routes/brandRoutes');
 const couponRoutes = require('./routes/couponRoutes');
-const orderRoutes = require('./routes/orderRoutes');
 const errorHandler = require('./middleware/errorMiddelware');
 const axios = require("axios");
 
@@ -22,7 +21,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(
-   cors({ origin: ["http://localhost:3000"],
+   cors({ origin: ["http://localhost:3000", ""],
     credentials: true})
 )
 // Routes 
@@ -31,7 +30,6 @@ app.use("/api/product", productRoutes ) ;
 app.use("/api/category", categoryRoutes ) ;
 app.use("/api/brand", brandRoutes ) ;
 app.use("/api/coupon", couponRoutes ) ;
-app.use("/api/order", orderRoutes ) ;
 
 app.get('/', (req, res) => { 
     res.send("Home Page ...");
