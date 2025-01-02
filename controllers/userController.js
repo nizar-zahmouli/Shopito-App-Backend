@@ -2,7 +2,6 @@ const asyncHandler = require("express-async-handler");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const User = require("../models/userModel");
-const cloudinary = require("../utils/cloudinary");
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -35,13 +34,6 @@ const registerUser = asyncHandler(async (req, res) => {
   const user = new User(req.body);
 
   //
-  if (photo) {
-    const uploadRes = await cloudinary.uploader.upload(image, {
-      upload_preset: "Shopito",
-    });
-    const { public_id, secure_url } = uploadRes;
-    user.photo = { public_id, secure_url };
-  }
 
   await user.save();
   // Generate Token
@@ -72,7 +64,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   res.send("Register User...");
-} );
+});
 
 // Login User
 
@@ -196,6 +188,34 @@ const updatePhoto = asyncHandler(async (req, res) => {
     address: updatedUser.address,
   });
 });
+
+// save Cart
+const saveCart = asyncHandler(async (req, res) => {
+  const { cartItems } = req.body;
+
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    user.cartItems = cartItems;
+    user.save();
+    res.status(200).json({ message: "cart saved" });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+// get Cart
+const getCart = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    res.status(200).json(user.cartItems);
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
 module.exports = {
   registerUser,
   loginUser,
@@ -204,4 +224,6 @@ module.exports = {
   getLoginStatus,
   updateUser,
   updatePhoto,
+  saveCart,
+  getCart,
 };
