@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(
-   cors({  origin: ["http://localhost:3000", "https://shopito-teal.vercel.app"],
+   cors({  origin: ["http://localhost:3000", "https://shoppito-app.vercel.app"],
     credentials: true})
 )
 // Routes 
