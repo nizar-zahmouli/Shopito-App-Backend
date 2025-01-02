@@ -1,8 +1,7 @@
-const asyncHandler = require('express-async-handler')
-
-const Brand = require("../models/BrandModel");
-const Category = require("../models/categoryModel");
-const slugify = require("slugify");
+const asyncHandler = require('express-async-handler');
+const Brand = require('../models/brandModel');
+const Category = require('../models/categoryModel');
+const slugify = require('slugify');
 
 // Create new Brand
 const createBrand = asyncHandler(async (req, res) => {

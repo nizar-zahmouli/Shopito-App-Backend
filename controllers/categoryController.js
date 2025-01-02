@@ -1,4 +1,4 @@
-const asyncHandler = require('express-async-handler')
+const asyncHandler = require("express-async-handler");
 const Category = require("../models/categoryModel");
 const slugify = require("slugify");
 
@@ -32,17 +32,17 @@ const getCategory = asyncHandler(async (req, res) => {
 // Delete Category
 
 const deleteCategory = asyncHandler(async (req, res) => {
-    const slug = req.params.slug.toLocaleLowerCase();
-  const categories = await Category.findOneAndDelete({slug});
-    if (!categories) {
-        res.status(404);
-        throw new Error("category not found");
-    }
+  const slug = req.params.slug.toLocaleLowerCase();
+  const categories = await Category.findOneAndDelete({ slug });
+  if (!categories) {
+    res.status(404);
+    throw new Error("category not found");
+  }
   res.status(200).json({ message: "Category deleted successfully" });
 });
 
 module.exports = {
-    createCategory,
-    getCategory,
-    deleteCategory,
+  createCategory,
+  getCategory,
+  deleteCategory,
 };
