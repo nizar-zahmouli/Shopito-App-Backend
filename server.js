@@ -12,6 +12,7 @@ const errorHandler = require('./middleware/errorMiddelware');
 
 const app = express();
 
+mongoose.set("strictQuery", true);
 
 //  Midelwares 
 
@@ -38,6 +39,7 @@ app.use(errorHandler);
 // Connect to DB and start server
 const PORT = process.env.PORT || 8000;
 mongoose
+  .set("strictQuery", false)
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
